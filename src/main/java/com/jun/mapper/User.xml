@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jun.mapper.UserMapper">
+
+    <!--列出所有用户-->
+    <select id="list" resultType="User">
+        select * from user
+    </select>
+
+    <!--查找用户-->
+    <select id="find"  resultType="User">
+        select * from user where name = #{name} and password = #{password}
+    </select>
+
+    <!--更新用户信息-->
+    <update id="update" parameterType="User">
+        update user set name = #{name}, email = #{email},
+        sex = #{sex}, tel = #{tel} where id=#{id}
+    </update>
+
+
+
+
+
+</mapper>

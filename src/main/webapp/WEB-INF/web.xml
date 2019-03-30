@@ -1,0 +1,73 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+
+<display-name>Archetype Created Web Application</display-name>
+
+  <!-- 在你的WEB项目完全启动之前被执行, 和数据库相关的操作 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+  <!--是应用上下文、全局的配置。其启动配置一般在web.xml的Listener节点中， 注意Listener和servlet的区别，-->
+  <!--加载优先级是Listener大于servlet，同时两者性质也不同，Listener的操作是对一个事件对象的监听，-->
+  <!--而servlet和filter比较类似，是对于URL的一种匹配拦截。-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+
+  <!-- spring mvc核心：分发servlet -->
+  <servlet>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <!-- spring mvc的配置文件 -->
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>utf-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
+  <mime-mapping>
+    <extension>htm</extension>
+    <mime-type>text/html;charset=UTF-8</mime-type>
+  </mime-mapping>
+  <mime-mapping>
+    <extension>html</extension>
+    <mime-type>text/html;charset=UTF-8</mime-type>
+  </mime-mapping>
+
+
+  <!--3.欢迎文件-->
+  <welcome-file-list>
+    <welcome-file>/WEB-INF/jsp/index.jsp</welcome-file>
+  </welcome-file-list>
+
+</web-app>
