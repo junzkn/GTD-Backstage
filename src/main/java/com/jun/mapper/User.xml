@@ -13,13 +13,21 @@
         select * from user where name = #{name} and password = #{password}
     </select>
 
+
+    <!--插入用户-->
+    <insert id="add" >
+        insert into user (name, password) values (#{name}, #{password})
+    </insert>
+
     <!--更新用户信息-->
-    <update id="update" parameterType="User">
-        update user set name = #{name}, email = #{email},
-        sex = #{sex}, tel = #{tel} where id=#{id}
+    <update id="update" >
+        update user set password = #{repassword} where name = #{name} AND password = #{password}
     </update>
 
-
+    <!--删除用户-->
+    <delete id="delete" >
+        delete from User where id = #{name} And password = #{password}
+    </delete>
 
 
 

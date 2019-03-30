@@ -10,6 +10,10 @@ public interface UserService {
 
     List<User> list();
 
-    User isExit(String name , String password) ;
+    User found(String name , String password) ;
+
+    User add(String name , String password) ;
+
+    User update(String name , String password,String repassword) ;
 
 }

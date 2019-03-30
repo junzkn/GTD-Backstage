@@ -19,13 +19,46 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> list() {
-        return userMapper.list();
+        try {
+            return userMapper.list();
+        }catch (Exception e){
+            return null ;
+        }
     }
 
     @Override
-    public User isExit(String name, String password) {
-        User user = userMapper.find(name, password);
-        return user ;
+    public User found(String name, String password) {
+        try{
+            User user = userMapper.find(name, password);
+            return user ;
+        }catch (Exception e){
+            System.out.println(e.toString());
+            return null ;
+        }
+    }
+
+    @Override
+    public User add(String name, String password) {
+        try{
+            userMapper.add(name,password) ;
+            User user = userMapper.find(name, password);
+            return user ;
+        }catch (Exception e){
+            System.out.println(e.toString());
+            return null ;
+        }
+    }
+
+    @Override
+    public User update(String name, String password, String repassword) {
+        try{
+            userMapper.update(name,password,repassword);
+            User user = userMapper.find(name, repassword);
+            return user ;
+        }catch (Exception e){
+            System.out.println(e.toString());
+            return null ;
+        }
     }
 
 

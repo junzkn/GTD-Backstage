@@ -3,7 +3,7 @@ package com.jun.pojo;
 public class ResponseData {
     private Object data ;
     private int errorCode ;
-    private String errorMessage ;
+    private String errorMsg;
 
     public Object getData() {
         return data;
@@ -22,7 +22,7 @@ public class ResponseData {
         return "ResponseData{" +
                 "data=" + data +
                 ", errorCode=" + errorCode +
-                ", errorMessage='" + errorMessage + '\'' +
+                ", errorMsg='" + errorMsg + '\'' +
                 '}';
     }
 
@@ -30,11 +30,11 @@ public class ResponseData {
         this.errorCode = errorCode;
     }
 
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getErrorMsg() {
+        return errorMsg;
     }
 
-    public void setErrorMessage(String errorMessage) {
-        this.errorMessage = errorMessage;
+    public void setErrorMsg(String errorMsg) {
+        this.errorMsg = errorMsg;
     }
 }
