@@ -3,30 +3,30 @@
 
 <mapper namespace="com.jun.mapper.UserMapper">
 
-    <!--列出所有用户-->
-    <select id="list" resultType="User">
+    <!--查询所有用户-->
+    <select id="getUser" resultType="User">
         select * from user
     </select>
 
-    <!--查找用户-->
-    <select id="find"  resultType="User">
+    <!--根据name和password查询用户-->
+    <select id="checkUser"  resultType="User">
         select * from user where name = #{name} and password = #{password}
     </select>
 
 
     <!--插入用户-->
-    <insert id="add" >
+    <insert id="addUser" >
         insert into user (name, password) values (#{name}, #{password})
     </insert>
 
-    <!--更新用户信息-->
-    <update id="update" >
+    <!--更新用户-->
+    <update id="updateUser" >
         update user set password = #{repassword} where name = #{name} AND password = #{password}
     </update>
 
     <!--删除用户-->
-    <delete id="delete" >
-        delete from User where id = #{name} And password = #{password}
+    <delete id="deleteUser" >
+        delete from User where id = #{id}
     </delete>
 
 

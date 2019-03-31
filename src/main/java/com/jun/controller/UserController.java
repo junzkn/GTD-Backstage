@@ -24,7 +24,7 @@ public class UserController {
     @RequestMapping(value="/login", method=RequestMethod.POST)
     public String login(@RequestParam("name")String name, @RequestParam("password")String password,
                         HttpServletRequest request,HttpServletResponse response ) {
-        User user = userService.found(name,password);
+        User user = userService.checkUser(name,password);
         ResponseData responseData = new ResponseData() ;
         responseData.setData(user);
         if(user!=null){
@@ -61,9 +61,9 @@ public class UserController {
                            HttpServletResponse response ) {
         User user ;
         if(repassword==null){
-            user = userService.add(name,password);
+            user = userService.addUser(name,password);
         }else {
-            user = userService.update(name,password,repassword);
+            user = userService.updateUser(name,password,repassword);
         }
         ResponseData responseData = new ResponseData() ;
         responseData.setData(user);
@@ -78,14 +78,6 @@ public class UserController {
         }
         return JsonUtils.toJson(responseData) ;
 
-    }
-
-
-
-    @ResponseBody
-    @RequestMapping(value="/islogin", method=RequestMethod.GET)
-    public String islogin(HttpServletRequest request) {
-        return String.valueOf(CookiesUtils.isLogin(request)) ;
     }
 
 

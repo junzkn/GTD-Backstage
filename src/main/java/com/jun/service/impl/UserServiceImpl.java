@@ -1,35 +1,24 @@
 package com.jun.service.impl;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
+import com.jun.mapper.TodoMapper;
 import com.jun.mapper.UserMapper;
 import com.jun.pojo.User;
 import com.jun.service.UserService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.List;
+
 
 @Service
 public class UserServiceImpl implements UserService {
+    @Resource private UserMapper userMapper ;
+    @Resource private TodoMapper todoMapper ;
 
-    @Resource UserMapper userMapper ;
-
-    @Override
-    public List<User> list() {
-        try {
-            return userMapper.list();
-        }catch (Exception e){
-            return null ;
-        }
-    }
 
     @Override
-    public User found(String name, String password) {
+    public User checkUser(String name, String password) {
         try{
-            User user = userMapper.find(name, password);
+            User user = userMapper.checkUser(name, password);
             return user ;
         }catch (Exception e){
             System.out.println(e.toString());
@@ -38,10 +27,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User add(String name, String password) {
+    public User addUser(String name, String password) {
         try{
-            userMapper.add(name,password) ;
-            User user = userMapper.find(name, password);
+            userMapper.addUser(name,password) ;
+            User user = userMapper.checkUser(name, password);
             return user ;
         }catch (Exception e){
             System.out.println(e.toString());
@@ -50,16 +39,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User update(String name, String password, String repassword) {
+    public User updateUser(String name, String password, String repassword) {
         try{
-            userMapper.update(name,password,repassword);
-            User user = userMapper.find(name, repassword);
+            userMapper.updateUser(name,password,repassword);
+            User user = userMapper.checkUser(name, repassword);
             return user ;
         }catch (Exception e){
             System.out.println(e.toString());
             return null ;
         }
     }
+
 
 
 }

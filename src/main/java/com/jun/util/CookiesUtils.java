@@ -13,10 +13,13 @@ public class CookiesUtils {
     public static  void addCookies(String name, String password,int id,HttpServletResponse response) {
         Cookie cookieName = new Cookie("name",name) ;
         cookieName.setMaxAge(cookiesAge);
+        cookieName.setPath("/");
         Cookie cookiePassword = new Cookie("password",password) ;
         cookiePassword.setMaxAge(cookiesAge);
+        cookiePassword.setPath("/");
         Cookie cookieId = new Cookie("id",String.valueOf(id)) ;
         cookieId.setMaxAge(cookiesAge);
+        cookieId.setPath("/");
 
         response.addCookie(cookieName);
         response.addCookie(cookiePassword);
@@ -33,6 +36,7 @@ public class CookiesUtils {
                         || cookie.getName().equals("id")){
                     cookie.setValue(null);
                     cookie.setMaxAge(0);
+                    cookie.setPath("/");
                     response.addCookie(cookie);
                 }
             }
@@ -40,7 +44,7 @@ public class CookiesUtils {
     }
 
 
-    public static  boolean isLogin(HttpServletRequest request){
+    public static  boolean checkLogin(HttpServletRequest request){
         Cookie[] cookies = request.getCookies();
         if (null==cookies) {
             return false ;
@@ -51,6 +55,18 @@ public class CookiesUtils {
             }
         }
         return false ;
+    }
+
+
+    public static int getUserId(HttpServletRequest request) {
+        Cookie[] cookies = request.getCookies();
+        if (null != cookies) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("id"))
+                    return Integer.parseInt(cookie.getValue()) ;
+            }
+        }
+        return -1;
     }
 
 }

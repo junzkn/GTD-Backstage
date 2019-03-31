@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface UserMapper {
 
-    List<User> list();
+    List<User> getUser();
 
-    User find(@Param("name")String name, @Param("password")String password);
+    User checkUser(@Param("name")String name, @Param("password")String password);
 
-    void add(@Param("name")String name, @Param("password")String password);
+    void addUser(@Param("name")String name, @Param("password")String password);
 
-    void update(@Param("name")String name, @Param("password")String password,@Param("repassword")String repassword);
+    void updateUser(@Param("name")String name, @Param("password")String password, @Param("repassword")String repassword);
 
-    void delete(@Param("name")String name, @Param("password")String password);
+    void deleteUser(@Param("id")String id);
 }
