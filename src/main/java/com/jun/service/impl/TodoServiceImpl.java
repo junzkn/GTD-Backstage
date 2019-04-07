@@ -81,10 +81,9 @@ public class TodoServiceImpl implements TodoService {
     public ResponseData updateTodo(HttpServletRequest request, Todo todo) {
         ResponseData responseData = new ResponseData() ;
         if(CookiesUtils.checkLogin(request)){
-            int userId = CookiesUtils.getUserId(request);
             try{
-                todoMapper.updateTodo(todo,userId);
-                Todo newTodo = todoMapper.getTodoById(todo.getId(),userId) ;
+                todoMapper.updateTodo(todo);
+                Todo newTodo = todoMapper.getTodoById(todo.getId(),todo.getUserid()) ;
                 responseData.setErrorCode(Common.ERROR_CODE_R);
                 responseData.setErrorMsg("");
                 responseData.setData(newTodo);

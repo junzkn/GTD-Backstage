@@ -43,13 +43,12 @@ public class UserController {
 
 
     @ResponseBody
-    @RequestMapping(value="/logout", method=RequestMethod.GET)
+    @RequestMapping(value="/logout", method=RequestMethod.POST)
     public String logout(HttpServletRequest request,HttpServletResponse response) {
         ResponseData responseData = new ResponseData() ;
         responseData.setData(null);
         responseData.setErrorCode(0);
         responseData.setErrorMsg("");
-        CookiesUtils.deleteCookies(request,response);
         return JsonUtils.toJson(responseData) ;
     }
 
@@ -79,6 +78,5 @@ public class UserController {
         return JsonUtils.toJson(responseData) ;
 
     }
-
 
 }

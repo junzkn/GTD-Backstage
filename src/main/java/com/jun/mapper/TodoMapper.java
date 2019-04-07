@@ -17,7 +17,7 @@ public interface TodoMapper {
 
     void addTodo(Todo todo) ;
 
-    void updateTodo(Todo todo,@Param("userid")int userid) ;
+    void updateTodo(Todo todo) ;
 
     void updateTodoStatus(@Param("id")int id,@Param("status")int status,@Param("userid")int userid) ;
 
