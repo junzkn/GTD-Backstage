@@ -26,9 +26,9 @@
 
     <!--插入Todo-->
     <insert id="addTodo" parameterType="Todo">
-        insert into todo (title,content,status,userid,completeDate,
+        insert into todo (title,content,status,userid,completeDate,type,priority,
                           completeDateStr,createDate,createDateStr)
-            values (#{title}, #{content}, #{status}, #{userid}, #{completeDate},
+            values (#{title}, #{content}, #{status}, #{userid}, #{completeDate},#{type},#{priority},
                      #{completeDateStr}, #{createDate}, #{createDateStr})
     </insert>
 
@@ -36,6 +36,7 @@
     <update id="updateTodo" parameterType="Todo">
         update todo set
         title = #{title} , content = #{content}, status = #{status}, completeDate = #{completeDate} ,
+        type = #{type} , priority = #{priority} ,
         completeDateStr = #{completeDateStr} , createDate = #{createDate} , createDateStr = #{createDateStr}
         where id = #{id} and userid = #{userid}
     </update>

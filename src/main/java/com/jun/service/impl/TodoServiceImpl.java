@@ -44,7 +44,7 @@ public class TodoServiceImpl implements TodoService {
             }
             responseData.setData(todos);
         }else {
-            responseData.setErrorCode(Common.ERROR_CODE_E);
+            responseData.setErrorCode(Common.ERROR_CODE_NO_LOGIN);
             responseData.setErrorMsg("请先登录");
             responseData.setData(null);
         }
@@ -70,7 +70,7 @@ public class TodoServiceImpl implements TodoService {
                 responseData.setData(null);
             }
         }else {
-            responseData.setErrorCode(Common.ERROR_CODE_E);
+            responseData.setErrorCode(Common.ERROR_CODE_NO_LOGIN);
             responseData.setErrorMsg("请先登录");
             responseData.setData(null);
         }
@@ -93,7 +93,7 @@ public class TodoServiceImpl implements TodoService {
                 responseData.setData(null);
             }
         }else {
-            responseData.setErrorCode(Common.ERROR_CODE_E);
+            responseData.setErrorCode(Common.ERROR_CODE_NO_LOGIN);
             responseData.setErrorMsg("请先登录");
             responseData.setData(null);
         }
@@ -117,7 +117,7 @@ public class TodoServiceImpl implements TodoService {
                 responseData.setData(null);
             }
         }else {
-            responseData.setErrorCode(Common.ERROR_CODE_E);
+            responseData.setErrorCode(Common.ERROR_CODE_NO_LOGIN);
             responseData.setErrorMsg("请先登录");
             responseData.setData(null);
         }
@@ -139,7 +139,7 @@ public class TodoServiceImpl implements TodoService {
                 responseData.setErrorMsg("数据库出错");
             }
         }else {
-            responseData.setErrorCode(Common.ERROR_CODE_E);
+            responseData.setErrorCode(Common.ERROR_CODE_NO_LOGIN);
             responseData.setErrorMsg("请先登录");
         }
         responseData.setData(null);
